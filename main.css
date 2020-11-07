@@ -1,0 +1,368 @@
+:root {
+    --primary-color: #4154D1;
+    --highlight-color: #FCF040;
+    --primary-text-color: #333;
+    --menu-color: #555;
+    --primary-font: 'Libre Baskerville', serif;
+    --secondary-font: 'Inter', sans-serif;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--secondary-font);
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: var(--primary-text-color);
+}
+
+#page-wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1920px;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 10rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0;
+}
+
+.menu .menu-list {
+    list-style: none;
+    padding-right: 2.5rem;
+}
+
+.menu .menu-list a {
+    text-decoration: none;
+    font-family: var(--secondary-font);
+    color: var(--menu-color);
+}
+
+.menu .menu-list a:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+h1 {
+    font-family: var(--primary-font);
+    font-size: clamp(2rem, 5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 5rem 3rem;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        "heading image"
+        "about about"
+        "miles miles"
+}
+
+#title {
+    grid-area: heading;
+    align-self: center;
+    padding-left: 10rem;;
+}
+
+.spl-highlight {
+    position: relative;
+}
+
+.spl-highlight::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        linear-gradient(to top, var(--highlight-color) 50%, transparent 50%);
+    animation-name: highlight;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes highlight {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    
+    50% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+#img-div {
+    display: flex;
+    flex-direction: column;
+    grid-area: image;
+    margin: 0 0;
+    padding: 0 0 1rem 1rem;
+}
+
+#image {
+    max-width: 100%;
+}
+
+figcaption {
+    max-width: 60%;
+    align-self: flex-end;
+    text-align: right;
+    font-size: clamp(0.9rem, 1vw, 1.4rem);
+    font-style: italic;
+    line-height:  1.5;
+    color: #777;
+    padding-right: 5rem;
+    /*border-right: 2px solid #FCF040;*/
+}
+
+figcaption::after {
+    position: absolute;
+    width: 2px;
+    height: 150%;
+    bottom: 0;
+    left: 110%;
+}
+
+#tribute-info {
+    grid-area: about;
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+h2 {
+    font-family: var(--primary-font);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0;
+}
+
+h3 {
+    font-weight: 400;
+    color: darkgrey;
+    text-align: center;
+}
+
+h4 {
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    color: var(--secondary-color);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+}
+
+.major-paragraph {
+    font-size: 2.0rem;
+    font-family: var(--primary-font);
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 50%;
+}
+
+.minor-paragraph {
+    font-family: var(--secondary-font);
+    margin: auto;
+    text-align: justify;
+    max-width: 50%;
+}
+
+#miles {
+    grid-area: miles;
+    margin: 0 auto;
+    max-width: 50%;
+    align-content: center;
+}
+
+.milestone {
+    font-family: var(--secondary-font);
+    margin: auto;
+}
+
+#extra {
+    margin: 10rem auto;
+    max-width: 50%;
+    text-align: center;
+}
+
+.logo-icon {
+    display: flex;
+    width: 10rem;
+    margin: auto;
+}
+
+.quote {
+    font-family: var(--primary-font);
+    color: #777;
+}
+
+#tribute-link {
+    position: relative;
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    transition: all ease-in 0.15s;
+}
+
+#tribute-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    display: block;
+    width: 100%;
+    height: 0.2rem;
+    background-color: #596CBC;
+    transform: scale(0);
+    transform-origin: left;
+    transition: all ease-in 0.15s;
+}
+
+#tribute-link:hover {
+    color: #596CBC;
+}
+
+#tribute-link:hover::before {
+    transform: scale(1);
+}
+
+#tribute-link:visited {
+    color: var(--primary-color);
+}
+
+footer {
+    font-family: var(--secondary-font);
+    font-size: 1.2rem;
+    color: #777;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+/*End of Styling*/
+
+@media screen and (max-width: 1440px){
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    nav, a, .major-paragraph, .minor-paragraph, .milestone-list, .quote {
+        font-size: 1.5rem;
+    }
+    
+    .major-paragraph, .minor-paragraph, #miles, #extra {
+        max-width: 70vw;
+    }
+    
+    #about {
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #main {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 5rem;
+        grid-auto-rows: auto;
+        grid-template-areas:
+            "image"
+            "heading"
+            "about"
+            "miles";
+    }
+    
+   #img-div {
+        grid-area: image;
+        margin: 0 0;
+        padding: 0;
+    }
+    
+    #title {
+        grid-area: heading;
+        align-self: center;
+        padding: 0;
+        margin: auto;
+    }
+    
+    h1 {
+        font-size: 3.5rem;
+        text-align: center;
+    }
+    
+    #about {
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #about {
+        margin-top: 2rem;
+    }
+    
+    nav, a, .major-paragraph, .minor-paragraph, .milestone-list, .quote {
+        font-size: 1.4rem;
+    }
+    
+    .major-paragraph, .minor-paragraph, #miles, #extra {
+        max-width: 90vw;
+    }
+    
+    h1 {
+        font-size: 7vw;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .major-paragraph, .minor-paragraph {
+        text-align: left;
+    }
+}
+
+
+
+
+
+
