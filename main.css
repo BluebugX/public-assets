@@ -1,368 +1,374 @@
 :root {
-    --primary-color: #4154D1;
-    --highlight-color: #FCF040;
-    --primary-text-color: #333;
-    --menu-color: #555;
-    --primary-font: 'Libre Baskerville', serif;
-    --secondary-font: 'Inter', sans-serif;
+    --primary-color: #3467FD;
+    --form-heading: #1D1D1D;
+    --form-hint: rgba(0, 0, 0, 0.7);
+    --placeholder: rgba(0, 0, 0, 0.5);
+    --field-stroke: #B3A7E1;
+    --field-complete-stroke: #6252B5;
+    --field-complete-background: rgba(148, 131, 235, 0.1);
+    --aside-text: rgba(255, 255, 255, 0.7);
+    --font: 'Inter', sans-serif;
 }
 
 html {
     font-size: 10px;
+    font-family: var(--font);
 }
 
 body {
     margin: 0;
-    font-family: var(--secondary-font);
-    font-size: 1.6rem;
-    line-height: 1.75;
-    color: var(--primary-text-color);
+    font-size: 2.2rem;
+    color: var(--form-heading);
+    line-height: 1.45;
+    overflow: hidden;
 }
 
-#page-wrapper {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1920px;
-}
-
-nav {
-    position: absolute;
-    top: 0;
-    left: 10rem;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 0;
-}
-
-.menu .menu-list {
-    list-style: none;
-    padding-right: 2.5rem;
-}
-
-.menu .menu-list a {
-    text-decoration: none;
-    font-family: var(--secondary-font);
-    color: var(--menu-color);
-}
-
-.menu .menu-list a:hover {
-    color: var(--primary-color);
-    cursor: pointer;
-}
-
-h1 {
-    font-family: var(--primary-font);
-    font-size: clamp(2rem, 5vw, 5.5rem);
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-#main {
+#main-wrapper {
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    grid-gap: 5rem 3rem;
-    grid-template-rows: repeat(3, auto);
-    grid-template-areas:
-        "heading image"
-        "about about"
-        "miles miles"
+    grid-template-areas: 
+        "aside form";
 }
 
-#title {
-    grid-area: heading;
-    align-self: center;
-    padding-left: 10rem;;
-}
-
-.spl-highlight {
+aside {
+    grid-area: aside;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: 
+        "t0p"
+        "b0ttom";
+    grid-row-gap: 12vh;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--aside-text);
     position: relative;
+    padding: 0 5vw;
 }
 
-.spl-highlight::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: 
-        linear-gradient(to top, var(--highlight-color) 50%, transparent 50%);
-    animation-name: highlight;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-@keyframes highlight {
-    0% {
-        width: 0;
-        opacity: 0;
-    }
-    
-    50% {
-        width: 100%;
-        opacity: 1;
-    }
-}
-
-#img-div {
-    display: flex;
-    flex-direction: column;
-    grid-area: image;
-    margin: 0 0;
-    padding: 0 0 1rem 1rem;
-}
-
-#image {
+#aside-top {
+    grid-area: t0p;
+    align-self: end;
+    justify-self: start;
     max-width: 100%;
 }
 
-figcaption {
-    max-width: 60%;
-    align-self: flex-end;
-    text-align: right;
-    font-size: clamp(0.9rem, 1vw, 1.4rem);
-    font-style: italic;
-    line-height:  1.5;
-    color: #777;
-    padding-right: 5rem;
-    /*border-right: 2px solid #FCF040;*/
+img {
+    max-width: 100%;
 }
 
-figcaption::after {
-    position: absolute;
-    width: 2px;
-    height: 150%;
-    bottom: 0;
-    left: 110%;
-}
-
-#tribute-info {
-    grid-area: about;
-}
-
-#about {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10rem;
+h1 {
+    visibility: hidden;
+    height: 0.1rem;
 }
 
 h2 {
-    font-family: var(--primary-font);
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 0;
+    font-family: var(--font);
+    font-size: 2.6rem;
+    font-weight: 600;
 }
 
-h3 {
+.hint {
+    font-family: var(--font);
+    font-size: 2rem;
     font-weight: 400;
-    color: darkgrey;
-    text-align: center;
+    color: var(--form-hint);
 }
 
-h4 {
-    font-family: var(--secondary-font);
-    font-weight: 500;
-    color: var(--secondary-color);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5rem;
+#description, #aside-text {
+    font-size: 2.2rem;
 }
 
-.major-paragraph {
-    font-size: 2.0rem;
-    font-family: var(--primary-font);
-    margin-bottom: 3rem;
-    text-align: center;
-    max-width: 50%;
+#aside-text {
+    grid-area: b0ttom;
+    align-self: start;
+    color: #FFF;
 }
 
-.minor-paragraph {
-    font-family: var(--secondary-font);
-    margin: auto;
-    text-align: justify;
-    max-width: 50%;
+/*Icon fix starts*/
+.material-icons {
+  font-size: 24px; 
+  display: inline-flex;
+  vertical-align: middle;
 }
+/*Icon fix ends*/
 
-#miles {
-    grid-area: miles;
-    margin: 0 auto;
-    max-width: 50%;
-    align-content: center;
-}
+/*flex approach
 
-.milestone {
-    font-family: var(--secondary-font);
-    margin: auto;
-}
-
-#extra {
-    margin: 10rem auto;
-    max-width: 50%;
-    text-align: center;
-}
-
-.logo-icon {
+aside {
     display: flex;
-    width: 10rem;
-    margin: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--primary-color);
+    padding: 0 4vw;
 }
 
-.quote {
-    font-family: var(--primary-font);
-    color: #777;
+h1 {
+    visibility: hidden;
+    height: 0.1rem;
 }
 
-#tribute-link {
+*/
+
+main {
+    grid-area: form;
+    overflow-y: auto;
+    padding: 10vh 7vw;
+}
+
+.form-group {
+    margin-bottom: 4.4rem;
+}
+
+label, .form-question {
+    display: block;
     position: relative;
-    font-family: var(--secondary-font);
-    font-weight: 500;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: var(--primary-color);
-    transition: all ease-in 0.15s;
+    color: var(--form-heading);
+    font-weight: 600;
 }
 
-#tribute-link::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 3rem;
+.form-field {
     display: block;
     width: 100%;
-    height: 0.2rem;
-    background-color: #596CBC;
-    transform: scale(0);
-    transform-origin: left;
-    transition: all ease-in 0.15s;
+    background-color: #FFF;
+    border-radius: 0.6rem;
+    border: 2px solid var(--field-stroke);
+    padding: 1.6rem 2.4rem;
+    box-sizing: border-box;
 }
 
-#tribute-link:hover {
-    color: #596CBC;
+::placeholder {
+    color: var(--placeholder);
 }
 
-#tribute-link:hover::before {
-    transform: scale(1);
+input, select, .form-field, .dropdown, fieldset {
+    font-family: inherit;
+    font-size: 2rem;
 }
 
-#tribute-link:visited {
+input {
+    margin-top: 1rem;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.4rem;
+    font-weight: 400;
+}
+
+fieldset label input {
+    margin: 0 2.4rem 0 0;
+}
+
+.form-radio, .checks {
+    min-height: 2.4rem;
+    min-width: 2.4rem;
+}
+
+.box-radio {
+    max-width: 30%;
+    border: 2px solid var(--field-stroke);
+    border-radius: 0.6rem;
+    padding: 1.8rem;
+}
+
+.box-radio:hover {
+    background-color: var(--field-complete-background);
+}
+
+.form-field:focus {
+    background-color: var(--field-complete-background);
+    border-color: var(--field-complete-stroke);
+}
+
+/*
+.form-field:invalid {
+    border-color: crimson;
+}
+*/
+
+.input-textarea {
+    min-height: 19rem;
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1.8rem 0;
+    background-color: var(--primary-color);
+    color: #FFF;
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.6rem;
+    box-shadow: 0px 16px 40px rgba(112, 144, 176, 0.4);
+    cursor: pointer;
+    transition: all ease-out 120ms;
+}
+
+.submit-button:hover {
+    background-color: var(--field-stroke);
+    box-shadow: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-button {
+    background: none;
     color: var(--primary-color);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all ease-out 120ms;
 }
 
-footer {
-    font-family: var(--secondary-font);
-    font-size: 1.2rem;
-    color: #777;
-    letter-spacing: 0.3rem;
-    text-align: center;
-}
-
-/*End of Styling*/
-
-@media screen and (max-width: 1440px){
-    h1 {
-        font-size: 4rem;
-    }
-}
-
-@media screen and (max-width: 1024px){
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-    
-    nav, a, .major-paragraph, .minor-paragraph, .milestone-list, .quote {
-        font-size: 1.5rem;
-    }
-    
-    .major-paragraph, .minor-paragraph, #miles, #extra {
-        max-width: 70vw;
-    }
-    
-    #about {
-        margin-top: 2rem;
-    }
+.text-button:hover {
+    color: var(--field-stroke);
 }
 
 @media screen and (max-width: 768px) {
-    #main {
-        display: grid;
+    body {
+        overflow:auto;
+    }
+    
+    #main-wrapper {
+        width: 100vw;
+        height: auto;
         grid-template-columns: 1fr;
-        grid-row-gap: 5rem;
-        grid-auto-rows: auto;
-        grid-template-areas:
-            "image"
-            "heading"
-            "about"
-            "miles";
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas: 
+            "aside"
+            "form";
     }
     
-   #img-div {
-        grid-area: image;
-        margin: 0 0;
-        padding: 0;
+    
+    aside {
+        grid-row-gap: 3vh;
     }
     
-    #title {
-        grid-area: heading;
-        align-self: center;
-        padding: 0;
-        margin: auto;
+    #aside-text {
+        align-self: start;
+        margin: 0 0 3vh 0;;
     }
     
-    h1 {
-        font-size: 3.5rem;
-        text-align: center;
+    main {
+        padding: 5vh 5vw;
     }
     
-    #about {
-        margin-top: 2rem;
+    #description, #aside-text, label, .form-question {
+        font-size: 2.0rem;
+    }
+    
+    .hint {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 2.4rem;
+    }
+    
+    .box-radio {
+        max-width: 100%;
+    }
+    
+    ::placeholder, .dropdown, .submit-button, .reset-button {
+        font-size: 1.8rem;
     }
 }
 
 @media screen and (max-width: 425px) {
-    #about {
-        margin-top: 2rem;
+    
+    aside {
+        grid-row-gap: 1vh;
     }
     
-    nav, a, .major-paragraph, .minor-paragraph, .milestone-list, .quote {
-        font-size: 1.4rem;
+    #title {
+        display: flex;
+        visibility: visible;
+        height: auto;
+        font-size: 2.4rem;
+        font-weight: 500;
+        line-height: 1.2;
+        color: #fff;
     }
     
-    .major-paragraph, .minor-paragraph, #miles, #extra {
-        max-width: 90vw;
+    img {
+        display: none;
     }
     
-    h1 {
-        font-size: 7vw;
+    main {
+        padding: 2vh 5vw;
     }
     
-    h3 {
-        font-size: 1.5rem;
+    #description, #aside-text, label, .form-question, .hint {
+        font-size: 1.6rem;
+        line-height: 1.5;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    ::placeholder, .dropdown, .submit-button, .reset-button {
+        font-size: 1.6rem;
     }
 }
 
-@media screen and (max-width: 320px) {
-    .major-paragraph, .minor-paragraph {
-        text-align: left;
+ /*ipad pro only*/
+
+@media only screen 
+  and (min-width: 1024px) 
+  and (max-height: 1366px) 
+  and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        body {
+        overflow:auto;
+    }
+    
+    #main-wrapper {
+        width: 100vw;
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas: 
+            "aside"
+            "form";
+    }
+    
+    aside {
+        grid-row-gap: 2vh;
+    }
+    
+    #aside-text {
+        align-self: start;
+        margin: 0 0 3vh 0;;
+    }
+    
+    main {
+        padding: 5vh 5vw;
+    }
+        
+    
+    #description {
+        max-width: 80%;
     }
 }
-
-
-
-
-
-
