@@ -303,13 +303,13 @@ fieldset label input {
     }
     
     #title {
-        display: flex;
         visibility: visible;
         height: auto;
         font-size: 2.4rem;
         font-weight: 500;
         line-height: 1.2;
         color: #fff;
+        opacity: 1;
     }
     
     img {
