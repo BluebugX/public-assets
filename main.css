@@ -59,7 +59,7 @@ img {
 }
 
 h1 {
-    visibility: hidden;
+    visibility: collapse;
     height: 0.1rem;
 }
 
