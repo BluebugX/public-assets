@@ -59,8 +59,9 @@ img {
 }
 
 h1 {
-    visibility: collapse;
+    visibility: visible;
     height: 0.1rem;
+    opacity: 0;
 }
 
 h2 {
